@@ -1,0 +1,1 @@
+enum sexo { femea, macho }

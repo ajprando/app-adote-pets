@@ -1,0 +1,25 @@
+{
+    "animais": [
+        {
+            "id": 1,
+            "nome": "Rex",
+            "categoria": "Cachorro",
+            "Sexo": "Macho",
+            "Descricao": "Cachorro muito brincalhão e amoroso."
+        },
+        {
+            "id": 2,
+            "nome": "Nina",
+            "categoria": "Gato",
+            "Sexo": "Femea",
+            "Descricao": "Gata curiosa e cheia de energia."
+        },
+        {
+            "id": 3,
+            "nome": "Alex",
+            "categoria": "Pássaro",
+            "Sexo": "Macho",
+            "Descricao": "Pássaro que adora cantar e brincar."
+        }
+    ]
+}
