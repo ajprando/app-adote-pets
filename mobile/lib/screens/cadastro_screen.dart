@@ -5,6 +5,8 @@ import 'package:mobile/screens/formCadastro_screen.dart';
 import 'package:mobile/services/api_service.dart';
 
 class CadastroAnimalList extends StatefulWidget {
+  const CadastroAnimalList({super.key});
+
   @override 
   _CadastroAnimalListState createState() => _CadastroAnimalListState();
 }
@@ -35,22 +37,25 @@ class _CadastroAnimalListState extends State<CadastroAnimalList> {
   }
 
   void deleteAnimal(String id, int index) async {
+    
     try {
       await apiservice.deleteAnimal(id);
       fetchAnimal();
     } catch (e) {
       print('Erro ao deletar animal: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro ao deletar animal.')),
+        const SnackBar(content: Text('Erro ao deletar animal.')),
       );
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: AppBar(
-      title: Text("Cadastro de animais")
+      title: const Text("Cadastro de animais")
     ),
     floatingActionButton: FloatingActionButton(
       onPressed: () {
@@ -59,7 +64,7 @@ class _CadastroAnimalListState extends State<CadastroAnimalList> {
           MaterialPageRoute(builder: (context) => CadastroAnimalForm()),
           ).then((value) => fetchAnimal());
       },
-      child: Icon(Icons.add),
+      child: const Icon(Icons.add),
       ),
       body: ListView.builder(
         itemCount: animais.length,
@@ -67,7 +72,7 @@ class _CadastroAnimalListState extends State<CadastroAnimalList> {
           final animal = animais[index];
           return Dismissible(
             key: Key(animal['id'].toString()),
-            background: Container(color: Colors.red, child: Icon(Icons.delete)),
+            background: Container(color: Colors.red, child: const Icon(Icons.delete)),
             direction: DismissDirection.endToStart,
             onDismissed: (direction) {
               if (direction == DismissDirection.endToStart) {
@@ -78,7 +83,7 @@ class _CadastroAnimalListState extends State<CadastroAnimalList> {
               title: Text(animal['nome']),
               subtitle: Text(animal['categoria']),
               trailing: IconButton(
-                icon: Icon(Icons.edit),
+                icon: const Icon(Icons.edit),
                 onPressed: () {
                   Navigator.push(
                     context,
