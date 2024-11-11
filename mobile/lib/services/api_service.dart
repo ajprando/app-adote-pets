@@ -12,7 +12,7 @@ class ApiService {
   final String baseUrl = 'http://localhost:3000';
 
   Future<Animal> getAnimal() async {
-    Uri uri = Uri.parse("http://localhost:3000/animal");
+    Uri uri = Uri.parse("http://localhost:3000/animais");
 
     Response response = await client.get(uri);
 
@@ -23,7 +23,7 @@ class ApiService {
   }
 
   Future<List<dynamic>> fetchAnimal() async {
-    final response = await http.get(Uri.parse('$baseUrl/animal'));
+    final response = await http.get(Uri.parse('$baseUrl/animais'));
 
     if (response.statusCode == 200) {
       return json.decode(response.body);
@@ -34,7 +34,7 @@ class ApiService {
 
   Future<void> addAnimal(Map<String, dynamic> animal) async {
     final response = await http.post(
-      Uri.parse('$baseUrl/animal'),
+      Uri.parse('$baseUrl/animais'),
       headers: {"Content-Type": "application/json"},
       body: json.encode(animal),
     );
@@ -45,7 +45,7 @@ class ApiService {
   }
 
   Future<void> deleteAnimal(String id) async {
-    final response = await http.delete(Uri.parse('$baseUrl/animal/$id'));
+    final response = await http.delete(Uri.parse('$baseUrl/animais/$id'));
 
     if (response.statusCode != 200) {
       throw Exception('Erro ao deletar animal');
@@ -54,7 +54,7 @@ class ApiService {
 
   Future<void> updateAnimal(String id, Map<String, dynamic> animal) async {
     final response = await http.put(
-      Uri.parse('$baseUrl/animal/$id'),
+      Uri.parse('$baseUrl/animais/$id'),
       headers: {"Content-Type": "application/json"},
       body: json.encode(animal),
     );
