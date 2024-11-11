@@ -6,7 +6,7 @@ import 'package:mobile/services/api_service.dart';
 class CadastroAnimalForm extends StatefulWidget {
   final Map<String, dynamic>? animal;
 
-  CadastroAnimalForm({this.animal});
+  const CadastroAnimalForm({super.key, this.animal});
 
   @override
   _CadastroAnimaLFormState createState() =>  _CadastroAnimaLFormState();
@@ -72,7 +72,7 @@ class _CadastroAnimaLFormState extends State<CadastroAnimalForm> {
               children: [
                 TextFormField(
                   initialValue: _nome,
-                  decoration: InputDecoration(labelText: 'Nome'),
+                  decoration: const InputDecoration(labelText: 'Nome'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira um nome.';
@@ -85,15 +85,15 @@ class _CadastroAnimaLFormState extends State<CadastroAnimalForm> {
                 ),
                 TextFormField(
                   initialValue: _descricao,
-                  decoration: InputDecoration(labelText: 'Descrição (Opcional)'),
+                  decoration: const InputDecoration(labelText: 'Descrição (Opcional)'),
                   onSaved: (value) {
                     _descricao = value ?? '';
                   },
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _salvarForm, 
-                  child: Text('Salvar'),
+                  child: const Text('Salvar'),
                   ),
               ],
             ),
