@@ -15,11 +15,11 @@ class Animal {
 
   factory Animal.fromJson(Map<String, dynamic> json) {
     return Animal(
-      id: json['id'],
-      nome: json['nome'],
-      categoria: json['categoria'],
-      sexo: json['sexo'],
-      descricao: json['descricaco']
+      id: json['id'] ?? '',
+      nome: json['nome'] ?? '',
+      categoria: json['categoria'] ?? '',
+      sexo: json['sexo'] ?? '',
+      descricao: json['descricao'] ?? '',
     );
   }
 

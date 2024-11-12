@@ -22,15 +22,34 @@ class ApiService {
     throw Exception('Erro');
   }
 
-  Future<List<dynamic>> fetchAnimal() async {
-    final response = await http.get(Uri.parse('$baseUrl/animais'));
+  Future<List<Animal>> fetchAnimal({String? categoria, String? sexo}) async {
+  
+  String url = '$baseUrl/animais';
 
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Erro ao carregar animais');
+  if (categoria != null || sexo != null) {
+    List<String> queryParams = [];
+    if (categoria != null) {
+      queryParams.add('categoria=$categoria');
     }
+    if (sexo != null) {
+      queryParams.add('sexo=$sexo');
+    }
+    url += '?' + queryParams.join('&');
   }
+
+  try {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      return data.map((json) => Animal.fromJson(json)).toList();
+    } else {
+      throw Exception('Erro ao carregar animais: ${response.statusCode}');
+    }
+  } catch (e) {
+    throw Exception('Erro ao conectar-se com o servidor: $e');
+  }
+}
+
 
   Future<void> addAnimal(Map<String, dynamic> animal) async {
     final response = await http.post(
